@@ -1,10 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const authRoutes = require('./src/routes/auth.routes');
-const productRoutes = require('./src/routes/product.routes');
-const categoryRoutes = require('./src/routes/category.routes');
-const rateRoutes = require('./src/routes/rate.routes');
-const billRoutes = require('./src/routes/bill.routes');
+import express from 'express';
+import cors from 'cors';
+
+import authRoutes from './src/routes/auth.routes.js';
+import productRoutes from './src/routes/product.routes.js';
+import categoryRoutes from './src/routes/category.routes.js';
+import rateRoutes from './src/routes/rate.routes.js';
+import billRoutes from './src/routes/bill.routes.js';
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use('/api/bills', billRoutes);
 
 // Health check
 app.get('/', (req, res) => {
-    res.send('Aura Jewellary API is running...');
+  res.send('Aura Jewellary API is running...');
 });
 
-module.exports = app;
+export default app;

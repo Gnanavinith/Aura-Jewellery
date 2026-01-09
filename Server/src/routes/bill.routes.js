@@ -1,6 +1,12 @@
-const express = require('express');
-const { createBill, getBills, getBillById, getTodaySales, calculateEstimate } = require('../controllers/bill.controller');
-const { protect, admin } = require('../middlewares/auth.middleware');
+import express from 'express';
+import {
+  createBill,
+  getBills,
+  getBillById,
+  getTodaySales,
+  calculateEstimate
+} from '../controllers/bill.controller.js';
+import { protect, admin } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
@@ -10,4 +16,4 @@ router.get('/', protect, getBills);
 router.get('/:id', protect, getBillById);
 router.post('/', protect, createBill);
 
-module.exports = router;
+export default router;
