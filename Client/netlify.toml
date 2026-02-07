@@ -1,24 +1,15 @@
-[[headers]]
-  for = "/src/*"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/assets/*.js"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/assets/*.jsx"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/assets/*.mjs"
-  [headers.values]
-    Content-Type = "application/javascript"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Content-Type = "text/css"

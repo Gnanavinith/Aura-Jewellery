@@ -1,5 +1,7 @@
-# SPA Redirects
-/*    /index.html   200
+# SPA Redirects - Only for non-asset paths
+!/assets/*    /index.html   200
+!/src/*       /index.html   200
+/*            /index.html   200
 
 # MIME Type Fixes
 *.js application/javascript
