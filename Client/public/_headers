@@ -26,6 +26,15 @@
           "value": "application/json"
         }
       ]
+    },
+    {
+      "source": "/src/*.@(js|jsx)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
     }
   ]
 }
