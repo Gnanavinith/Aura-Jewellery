@@ -7,9 +7,7 @@ import Rate from './models/Rate.model.js';
 
 dotenv.config();
 
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  'mongodb+srv://aravind:Aravind123@cluster0.x2c1o.mongodb.net/aura-jewellary?appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
 
 export const seedDatabase = async () => {
   try {

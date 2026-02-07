@@ -86,6 +86,7 @@ export const createBill = async (req, res) => {
         category: product.category,
         weight: product.weight,
         rate,
+        metalPrice: calc.metalPrice,
         wastagePercent,
         wastageAmount: calc.wastageAmount,
         makingCharge: makingCharge * quantity,

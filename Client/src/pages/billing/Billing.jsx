@@ -335,46 +335,73 @@ const Billing = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[calc(100vh-300px)] overflow-y-auto pr-2">
-          {filteredProducts.map((product) => {
-            const calc = calculateItemPrice(product);
-            const inCart = cart.find(item => item.product._id === product._id);
-            return (
-              <div
-                key={product._id}
-                className={`bg-white p-4 rounded-xl border-2 transition-all cursor-pointer hover:shadow-md ${inCart ? 'border-amber-400 shadow-md' : 'border-gray-100'}`}
-                onClick={() => addToCart(product)}
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="font-semibold text-gray-800">{product.name}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${getCategoryColor(product.category)}`}>
-                      {product.category}
-                    </span>
-                  </div>
-                  <span className="text-xs text-gray-500">Stock: {product.stock}</span>
-                </div>
-                <div className="text-sm text-gray-600 space-y-1">
-                  <div className="flex justify-between">
-                    <span>Weight:</span>
-                    <span>{product.weight}g</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Rate:</span>
-                    <span>{formatCurrency(calc.rate)}/g</span>
-                  </div>
-                </div>
-                <div className="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
-                  <span className="text-lg font-bold text-amber-600">{formatCurrency(calc.total)}</span>
-                  {inCart && (
-                    <span className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full">
-                      {inCart.quantity} in cart
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+        <div className="max-h-[calc(100vh-250px)] overflow-y-auto">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weight</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200 max-h-[calc(100vh-350px)] overflow-y-auto">
+                {filteredProducts.map((product) => {
+                  const calc = calculateItemPrice(product);
+                  const inCart = cart.find(item => item.product._id === product._id);
+                  return (
+                    <tr 
+                      key={product._id} 
+                      className={`hover:bg-gray-50 cursor-pointer transition-colors ${inCart ? 'bg-amber-50 border-l-4 border-amber-400' : ''}`}
+                      onClick={() => addToCart(product)}
+                    >
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900">{product.name}</div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getCategoryColor(product.category)}`}>
+                          {product.category}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {product.weight}g
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {formatCurrency(calc.rate)}/g
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-amber-600">
+                        {formatCurrency(calc.total)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {product.stock}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        {inCart ? (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                            {inCart.quantity} in cart
+                          </span>
+                        ) : (
+                          <button 
+                            className="text-amber-600 hover:text-amber-900 font-medium"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart(product);
+                            }}
+                          >
+                            Add to Cart
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
