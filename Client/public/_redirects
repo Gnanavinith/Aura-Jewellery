@@ -1,1 +1,9 @@
+# SPA Redirects
 /*    /index.html   200
+
+# MIME Type Fixes
+*.js application/javascript
+*.jsx application/javascript
+*.mjs application/javascript
+*.css text/css
+*.json application/json
